@@ -3,14 +3,15 @@ requires = ["setuptools>=64.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "Crawl4AI"
-dynamic = ["version"]
-description = "🚀🤖 Crawl4AI: Open-source LLM Friendly Web Crawler & scraper"
+name = "crawl4ai-ctf"
+version = "0.7.6.post2"
+description = "🚀🤖 Crawl4AI: Open-source LLM Friendly Web Crawler & scraper (CTF fork with BFS/Best-First max_pages bug fixes)"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"
 authors = [
-    {name = "Unclecode", email = "unclecode@kidocode.com"}
+    {name = "Unclecode", email = "unclecode@kidocode.com"},
+    {name = "Tim Kitchens (CTF fork maintainer)", email = "tim@codingthefuturewithai.com"}
 ]
 dependencies = [
     "aiofiles>=24.1.0",
@@ -87,9 +88,6 @@ packages = {find = {where = ["."], include = ["crawl4ai*"]}}
 
 [tool.setuptools.package-data]
 crawl4ai = ["js_snippet/*.js"]
-
-[tool.setuptools.dynamic]
-version = {attr = "crawl4ai.__version__.__version__"}
 
 [tool.uv.sources]
 crawl4ai = { workspace = true }

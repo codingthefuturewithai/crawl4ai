@@ -190,16 +190,18 @@ class BestFirstCrawlingStrategy(DeepCrawlStrategy):
                 result.metadata["depth"] = depth
                 result.metadata["parent_url"] = parent_url
                 result.metadata["score"] = -score
-                
+
                 # Count only successful crawls toward max_pages limit
                 if result.success:
                     self._pages_crawled += 1
-                    # Check if we've reached the limit during batch processing
+
+                yield result  # ← MOVED BEFORE BREAK (bug fix)
+
+                # Check if we've reached the limit during batch processing
+                if result.success:
                     if self._pages_crawled >= self.max_pages:
                         self.logger.info(f"Max pages limit ({self.max_pages}) reached during batch, stopping crawl")
                         break  # Exit the generator
-                
-                yield result
                 
                 # Only discover links from successful crawls
                 if result.success:

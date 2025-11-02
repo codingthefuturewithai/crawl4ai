@@ -1,5 +1,7 @@
 # 🚀🤖 Crawl4AI: Open-source LLM Friendly Web Crawler & Scraper.
 
+> **Note:** This is a maintained fork of [Crawl4AI](https://github.com/unclecode/crawl4ai) published as `crawl4ai-ctf` on PyPI. It includes a critical bug fix for the BFS deep crawl strategy's `max_pages` parameter that has not yet been merged upstream. The original project and all credit belongs to [Unclecode](https://github.com/unclecode). This fork maintains the same Apache-2.0 license.
+
 <div align="center">
 
 <a href="https://trendshift.io/repositories/11716" target="_blank"><img src="https://trendshift.io/api/badge/repositories/11716" alt="unclecode%2Fcrawl4ai | Trendshift" style="width: 250px; height: 55px;" width="250" height="55"/></a>
