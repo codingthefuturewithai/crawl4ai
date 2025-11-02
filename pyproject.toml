@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "crawl4ai-ctf"
-version = "0.7.6.post2"
-description = "🚀🤖 Crawl4AI: Open-source LLM Friendly Web Crawler & scraper (CTF fork with BFS/Best-First max_pages bug fixes)"
+version = "0.7.6.post3"
+description = "🚀🤖 Crawl4AI: Open-source LLM Friendly Web Crawler & scraper (CTF fork with Docker cgroup memory + BFS/Best-First max_pages fixes)"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"

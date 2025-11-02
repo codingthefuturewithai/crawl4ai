@@ -3496,7 +3496,27 @@ def get_true_available_memory_gb() -> float:
             # Fallback to psutil
             return vm.available / (1024**3)
     else:
-        # For Windows and Linux, psutil.available is accurate
+        # For Windows and Linux, check Docker/container cgroup limits first
+        # Try cgroup v2 (newer)
+        try:
+            with open('/sys/fs/cgroup/memory.max', 'r') as f:
+                limit = f.read().strip()
+                if limit != 'max':  # 'max' means unlimited
+                    return int(limit) / (1024**3)
+        except (FileNotFoundError, PermissionError):
+            pass
+
+        # Try cgroup v1 (older)
+        try:
+            with open('/sys/fs/cgroup/memory/memory.limit_in_bytes', 'r') as f:
+                limit = int(f.read().strip())
+                # Check if it's a real limit (not the "unlimited" sentinel value)
+                if limit < (1024**4):  # Less than 1TB = real limit
+                    return limit / (1024**3)
+        except (FileNotFoundError, PermissionError):
+            pass
+
+        # Fallback to psutil for bare metal / unlimited containers
         return vm.available / (1024**3)
 
 
